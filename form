@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+
+set -eux
+sudo -v
+
+is_linux() {
+  test "$(uname)" = 'Linux'
+}
+
+is_macos() {
+  test "$(uname)" = 'Darwin'
+}
+
+command_exists() {
+  test -x "$(command -v "$1")"
+}
+
+# ensure assumption: .local/bin on path
+export PATH="$PATH:~/.local/bin"
+
+# ensure assumption: homebrew installed
+if is_linux; then
+  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+  command_exists curl || sudo apt-get install -y curl
+  command_exists brew || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+elif is_macos; then
+  command_exists brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# ensure assumption: packages up to date
+
+! command_exists apt-get || sudo bash -c 'apt-get update && apt-get upgrade -y'
+! command_exists brew || bash -c 'brew update && brew upgrade'
+! is_macos || brew cask upgrade
+
+# all the packages
+
+apt_packages=(
+  autoconf
+  bison
+  build-essential
+  libssl-dev
+  libyaml-dev
+  libreadline6-dev
+  zlib1g-dev
+  libncurses5-dev
+  libffi-dev
+  libgdbm5
+  libgdbm-dev
+  libssl-dev
+  make
+  build-essential
+  libssl-dev
+  zlib1g-dev
+  libbz2-dev
+  libreadline-dev
+  libsqlite3-dev
+  wget
+  curl
+  llvm
+  libncurses5-dev
+  libncursesw5-dev
+  xz-utils
+  tk-dev
+  libffi-dev
+  liblzma-dev
+  python-openssl
+  git
+  fish
+  firefox
+  zeal
+  tilix
+)
+
+brew_formulae=(
+  adr-tools
+  awscli
+  bat
+  cloc
+  fish
+  git
+  gnupg
+  httpie
+  hub
+  jq
+  puma/puma/puma-dev
+  ripgrep
+  rsync
+  shellcheck
+  shfmt
+  vim
+  xsv
+  rustup-init
+  rbenv
+  pyenv
+  nodenv
+  go
+  terminal-notifier
+  vim
+  neofetch
+  ruby-build
+  node-build
+  asciinema
+  just
+  kubernetes-cli
+  pet
+  corgi
+  ykman
+  yubico-piv-tool
+)
+
+brew_casks=(
+  visual-studio-code
+  1password
+  1password-cli
+  alfred
+  aws-vault
+  balenaetcher
+  ccmenu
+  dash
+  firefox
+  iterm2
+  karabiner-elements
+  stretchly
+  yubico-yubikey-manager
+)
+
+if is_macos; then
+  # some are for rbenv/pyenv etc., some only install on macOS
+  brew_formulae+=(
+    heroku
+    openssl
+    libyaml
+    libffi
+    readline
+    xz
+    mas
+  )
+fi
+
+! is_linux || sudo apt-get install -y "${apt_packages[@]}"
+brew install "${brew_formulae[@]}"
+! is_macos || brew cask install "${brew_casks[@]}"
+
+# manual installation where casks etc. weren't available
+
+if is_linux && ! command_exists code; then
+  curl -fsSLo /tmp/code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+
+  sudo dpkg -i /tmp/code.deb
+  rm /tmp/code.deb
+fi
