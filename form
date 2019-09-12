@@ -36,6 +36,7 @@ fi
 # all the packages
 
 apt_packages=(
+  gnome-disk-utility
   autoconf
   bison
   build-essential
@@ -45,7 +46,7 @@ apt_packages=(
   zlib1g-dev
   libncurses5-dev
   libffi-dev
-  libgdbm5
+  libgdbm6
   libgdbm-dev
   libssl-dev
   make
@@ -70,6 +71,8 @@ apt_packages=(
   firefox
   zeal
   tilix
+  opensc
+  opensc-pkcs11
 )
 
 brew_formulae=(
@@ -103,8 +106,6 @@ brew_formulae=(
   asciinema
   just
   kubernetes-cli
-  pet
-  corgi
   ykman
   yubico-piv-tool
 )
