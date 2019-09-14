@@ -11,13 +11,18 @@ xcode-select --install
 ## Linux Prerequisites
 
 ```shell
-sudo apt install -y curl
+sudo apt install -y git curl
 ```
 
 ## Installation
 
 ```shell
+# 1. basic
 curl -fsSL https://raw.githubusercontent.com/liamdawson/nbl/master/form | bash
-# or
+
+# 2. pull everything
+mkdir -p ~/.nbl; curl -fsSL https://github.com/liamdawson/nbl/archive/master.tar.gz | tar xz --directory ~/.nbl
+
+# 3. hack on it
 git clone git@github.com:liamdawson/nbl.git && cd nbl && bash form
 ```
