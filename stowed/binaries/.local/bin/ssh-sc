@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+POSSIBLE_PATHS=(
+  /usr/local/lib/opensc-pkcs11.so
+  /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+)
+
+for path_option in "${POSSIBLE_PATHS[@]}"; do
+  if [ -r "$path_option" ]; then
+    ssh-add -s "$path_option"
+    exit $?
+  fi
+done
+
+echo "ERROR: No expected pkcs11 libs found"
+exit 127
