@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+docker start jupyter || docker run \
+  -d \
+  -p 8888:8888 \
+  -v ~/w/jupyter/work:/home/jovyan/work \
+  --name jupyter \
+  -e JUPYTER_ENABLE_LAB=yes \
+  jupyter/all-spark-notebook

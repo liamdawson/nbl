@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if ! [ -d ~/.nbl ]; then
+  echo "Where's ~/.nbl?"
+  exit 1
+fi
+
+(
+  set -eu
+
+  cd ~/.nbl
+  bash form
+  bash link
+)

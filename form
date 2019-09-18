@@ -108,6 +108,7 @@ brew_formulae=(
   kubernetes-cli
   ykman
   yubico-piv-tool
+  stow
 )
 
 brew_casks=(
@@ -151,3 +152,4 @@ if is_linux && ! command_exists code; then
   sudo dpkg -i /tmp/code.deb
   rm /tmp/code.deb
 fi
+

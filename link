@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if ! command -v stow >/dev/null; then
+  echo "ERROR: stow not found"
+  exit 1
+fi
+
+STOW_PATH="$(command -v stow)"
+
+restow() {
+  "$STOW_PATH" --restow -d "${DIR}/stowed" "$@" 
+}
+
+# stow user binaries
+
+restow -t "$HOME" binaries
