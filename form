@@ -130,7 +130,7 @@ brew_casks=(
 if is_macos; then
   # some are for rbenv/pyenv etc., some only install on macOS
   brew_formulae+=(
-    heroku
+    # heroku
     openssl
     libyaml
     libffi
