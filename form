@@ -93,7 +93,6 @@ brew_formulae=(
   shfmt
   vim
   xsv
-  rustup-init
   rbenv
   pyenv
   nodenv
