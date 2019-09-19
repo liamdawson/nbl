@@ -109,6 +109,8 @@ brew_formulae=(
   ykman
   yubico-piv-tool
   stow
+  pastel
+  convox
 )
 
 brew_casks=(
@@ -124,13 +126,14 @@ brew_casks=(
   iterm2
   karabiner-elements
   stretchly
-  yubico-yubikey-manager
+  docker
+  homebrew/cask-drivers/yubico-yubikey-manager
 )
 
 if is_macos; then
   # some are for rbenv/pyenv etc., some only install on macOS
   brew_formulae+=(
-    # heroku
+    heroku/brew/heroku
     openssl
     libyaml
     libffi
@@ -152,4 +155,3 @@ if is_linux && ! command_exists code; then
   sudo dpkg -i /tmp/code.deb
   rm /tmp/code.deb
 fi
-
