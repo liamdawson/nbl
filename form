@@ -104,7 +104,6 @@ brew_formulae=(
   asciinema
   just
   ykman
-  yubico-piv-tool
   stow
   pastel
   convox
@@ -144,6 +143,7 @@ if is_macos; then
     mas
     terminal-notifier
     kubernetes-cli
+    yubico-piv-tool
   )
 fi
 
