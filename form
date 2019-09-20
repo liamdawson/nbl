@@ -103,7 +103,6 @@ brew_formulae=(
   node-build
   asciinema
   just
-  kubernetes-cli
   ykman
   yubico-piv-tool
   stow
@@ -129,6 +128,10 @@ brew_casks=(
   plex-media-player
 )
 
+snap_packages=(
+  '--classic kubectl'
+)
+
 if is_macos; then
   # some are for rbenv/pyenv etc., some only install on macOS
   brew_formulae+=(
@@ -140,12 +143,19 @@ if is_macos; then
     xz
     mas
     terminal-notifier
+    kubernetes-cli
   )
 fi
 
 ! is_linux || sudo apt-get install -y "${apt_packages[@]}"
 brew install "${brew_formulae[@]}"
 ! is_macos || brew cask install "${brew_casks[@]}"
+
+if command -v snap >/dev/null; then
+  for pkg in "${snap_packages[@]}"; do
+    sudo snap install $pkg
+  done
+fi
 
 # manual installation where casks etc. weren't available
 
