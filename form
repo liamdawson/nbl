@@ -97,7 +97,6 @@ brew_formulae=(
   pyenv
   nodenv
   go
-  terminal-notifier
   vim
   neofetch
   ruby-build
@@ -140,6 +139,7 @@ if is_macos; then
     readline
     xz
     mas
+    terminal-notifier
   )
 fi
 
