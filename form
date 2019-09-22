@@ -73,6 +73,7 @@ apt_packages=(
   tilix
   opensc
   opensc-pkcs11
+  docker.io
 )
 
 brew_formulae=(
