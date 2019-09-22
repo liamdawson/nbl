@@ -107,6 +107,9 @@ brew_formulae=(
   stow
   pastel
   convox
+  drakew/corgi/corgi
+  knqyf263/pet/pet
+  peco
 )
 
 brew_casks=(
