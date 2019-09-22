@@ -2,6 +2,10 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+if test -d /home/linuxbrew/.linuxbrew/bin; then
+  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+fi
+
 if ! command -v stow >/dev/null; then
   echo "ERROR: stow not found"
   exit 1
