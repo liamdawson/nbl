@@ -74,6 +74,7 @@ apt_packages=(
   opensc
   opensc-pkcs11
   docker.io
+  arc-theme
 )
 
 brew_formulae=(
