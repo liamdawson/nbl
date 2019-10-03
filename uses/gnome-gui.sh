@@ -7,3 +7,5 @@ dconf write /org/gnome/desktop/input-sources/xkb-options "['terminate:ctrl_alt_b
 
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
 
+# touchpad scroll direction
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll false
