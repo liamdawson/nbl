@@ -75,13 +75,13 @@ apt_packages=(
   opensc-pkcs11
   docker.io
   arc-theme
+  vim
 )
 
 brew_formulae=(
   adr-tools
   awscli
   bat
-  cloc
   fish
   git
   gnupg
@@ -112,6 +112,7 @@ brew_formulae=(
   drakew/corgi/corgi
   knqyf263/pet/pet
   peco
+  k3d
 )
 
 brew_casks=(
@@ -130,6 +131,10 @@ brew_casks=(
   docker
   homebrew/cask-drivers/yubico-yubikey-manager
   plex-media-player
+)
+
+misc_installs=(
+  'command -v rustup >/dev/null || curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path'
 )
 
 snap_packages=(
@@ -170,3 +175,7 @@ if is_linux && ! command_exists code; then
   sudo dpkg -i /tmp/code.deb
   rm /tmp/code.deb
 fi
+
+for cmd in "${misc_installs[@]}"; do
+  bash -c "$cmd"
+done

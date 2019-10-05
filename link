@@ -19,6 +19,7 @@ restow() {
 
 # stow user binaries
 
+mkdir -p "${HOME}/.local/bin"
 restow -t "$HOME" binaries
 
 mkdir -p "${HOME}/.config/fish/conf.d"
