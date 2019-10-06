@@ -76,6 +76,10 @@ apt_packages=(
   docker.io
   arc-theme
   vim
+  qemu-kvm
+  libvirt-daemon-system
+  libvirt-clients
+  bridge-utils
 )
 
 brew_formulae=(
@@ -112,7 +116,8 @@ brew_formulae=(
   drakew/corgi/corgi
   knqyf263/pet/pet
   peco
-  k3d
+  k3d # mark/sweep
+  minikube
 )
 
 brew_casks=(
