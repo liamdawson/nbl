@@ -36,92 +36,85 @@ fi
 # all the packages
 
 apt_packages=(
-  gnome-disk-utility
+  arc-theme
   autoconf
   bison
+  bridge-utils
   build-essential
-  libssl-dev
-  libyaml-dev
-  libreadline6-dev
-  zlib1g-dev
-  libncurses5-dev
-  libffi-dev
-  libgdbm6
-  libgdbm-dev
-  libssl-dev
-  make
-  build-essential
-  libssl-dev
-  zlib1g-dev
-  libbz2-dev
-  libreadline-dev
-  libsqlite3-dev
-  wget
   curl
-  llvm
+  docker.io
+  firefox
+  fish
+  git
+  gnome-disk-utility
+  gnome-tweaks
+  libbz2-dev
+  libffi-dev
+  libgdbm-dev
+  libgdbm6
+  liblzma-dev
   libncurses5-dev
   libncursesw5-dev
-  xz-utils
-  tk-dev
-  libffi-dev
-  liblzma-dev
-  python-openssl
-  git
-  fish
-  firefox
-  zeal
-  tilix
+  libreadline-dev
+  libreadline6-dev
+  libsqlite3-dev
+  libssl-dev
+  libvirt-clients
+  libvirt-daemon-system
+  libyaml-dev
+  llvm
+  make
   opensc
   opensc-pkcs11
-  docker.io
-  arc-theme
-  vim
+  python-openssl
   qemu-kvm
-  libvirt-daemon-system
-  libvirt-clients
-  bridge-utils
+  tilix
+  tk-dev
+  vim
+  wget
+  xz-utils
+  zeal
+  zlib1g-dev
 )
 
 brew_formulae=(
   adr-tools
+  asciinema
   awscli
   bat
+  convox
+  drakew/corgi/corgi
   fish
   git
   gnupg
+  go
   httpie
   hub
   jq
+  just
+  k3d # mark/sweep
+  knqyf263/pet/pet
+  minikube
+  neofetch
+  node-build
+  nodenv
+  pastel
+  peco
   puma/puma/puma-dev
+  pyenv
+  rbenv
   ripgrep
   rsync
+  ruby-build
   shellcheck
   shfmt
+  stow
   vim
   xsv
-  rbenv
-  pyenv
-  nodenv
-  go
-  vim
-  neofetch
-  ruby-build
-  node-build
-  asciinema
-  just
   ykman
-  stow
-  pastel
-  convox
-  drakew/corgi/corgi
-  knqyf263/pet/pet
-  peco
-  k3d # mark/sweep
-  minikube
 )
 
 brew_casks=(
-  visual-studio-code
   1password
   1password-cli
   alfred
@@ -129,13 +122,14 @@ brew_casks=(
   balenaetcher
   ccmenu
   dash
+  docker
   firefox
+  homebrew/cask-drivers/yubico-yubikey-manager
   iterm2
   karabiner-elements
-  stretchly
-  docker
-  homebrew/cask-drivers/yubico-yubikey-manager
   plex-media-player
+  stretchly
+  visual-studio-code
 )
 
 misc_installs=(
@@ -150,14 +144,14 @@ if is_macos; then
   # some are for rbenv/pyenv etc., some only install on macOS
   brew_formulae+=(
     heroku/brew/heroku
-    openssl
-    libyaml
-    libffi
-    readline
-    xz
-    mas
-    terminal-notifier
     kubernetes-cli
+    libffi
+    libyaml
+    mas
+    openssl
+    readline
+    terminal-notifier
+    xz
     yubico-piv-tool
   )
 fi
