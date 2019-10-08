@@ -15,6 +15,23 @@ command_exists() {
   test -x "$(command -v "$1")"
 }
 
+cargo_install() {
+  target_pkg="$1"
+
+  if ! command_exists cargo; then
+    return 0
+  fi
+
+  if command_exists cargo; then
+    if command_exists "$target_pkg"; then
+      current_ver="$(cargo install --list | grep '^fw' | awk '{ print $2;}' | sed -E 's/v(.*):/\1/')"
+
+    else
+      cargo install "$target_pkg"
+    fi
+  fi
+}
+
 # ensure assumption: .local/bin on path
 export PATH="$PATH:~/.local/bin"
 
@@ -45,6 +62,7 @@ apt_packages=(
   docker.io
   firefox
   fish
+  fonts-noto-color-emoji
   git
   gnome-disk-utility
   gnome-tweaks
@@ -88,6 +106,7 @@ brew_formulae=(
   git
   gnupg
   go
+  graphviz
   httpie
   hub
   jq

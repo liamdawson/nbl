@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if test "$1" = '-d' || test "$1" = '--delete'; then
-  docker rm -f jupyter
-else
-  docker stop jupyter
-fi

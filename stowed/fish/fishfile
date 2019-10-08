@@ -11,5 +11,6 @@ liamdawson/fish-plugin-gobin
 liamdawson/fish-plugin-sbin
 liamdawson/fish-plugin-snap
 liamdawson/fish-plugin-local-bin
-liamdawson/fish-plugin-linuxbrew
+liamdawson/fish-plugin-omnibrew
+liamdawson/fish-plugin-prompt
 franciscolourenco/done
