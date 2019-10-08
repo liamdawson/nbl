@@ -22,13 +22,14 @@ cargo_install() {
     return 0
   fi
 
-  if command_exists cargo; then
-    if command_exists "$target_pkg"; then
-      current_ver="$(cargo install --list | grep '^fw' | awk '{ print $2;}' | sed -E 's/v(.*):/\1/')"
+  if ! command_exists cargo-install-update; then
+    cargo install cargo-update
+  fi
 
-    else
-      cargo install "$target_pkg"
-    fi
+  if cargo install --list | grep -q "^$target_pkg"; then
+    cargo install-update "$target_pkg"
+  else
+    cargo install "$target_pkg"
   fi
 }
 
@@ -58,6 +59,7 @@ apt_packages=(
   bison
   bridge-utils
   build-essential
+  cmake
   curl
   docker.io
   firefox
@@ -70,12 +72,14 @@ apt_packages=(
   libffi-dev
   libgdbm-dev
   libgdbm6
+  libgit2-dev
   liblzma-dev
   libncurses5-dev
   libncursesw5-dev
   libreadline-dev
   libreadline6-dev
   libsqlite3-dev
+  libssh2-1-dev
   libssl-dev
   libvirt-clients
   libvirt-daemon-system
@@ -84,6 +88,7 @@ apt_packages=(
   make
   opensc
   opensc-pkcs11
+  pkg-config
   python-openssl
   qemu-kvm
   tilix
@@ -159,6 +164,11 @@ snap_packages=(
   '--classic kubectl'
 )
 
+cargo_packages=(
+  cargo-update
+  fw
+)
+
 if is_macos; then
   # some are for rbenv/pyenv etc., some only install on macOS
   brew_formulae+=(
@@ -196,4 +206,8 @@ fi
 
 for cmd in "${misc_installs[@]}"; do
   bash -c "$cmd"
+done
+
+for pkg in "${cargo_packages[@]}"; do
+  cargo_install "$pkg"
 done
