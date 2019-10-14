@@ -144,17 +144,32 @@ brew_casks=(
   alfred
   aws-vault
   balenaetcher
+  bdash
   ccmenu
   dash
   docker
   firefox
-  homebrew/cask-drivers/yubico-yubikey-manager
   iterm2
+  jetbrains-toolbox
   karabiner-elements
+  muzzle
   plex-media-player
   puma/puma/puma-dev
   stretchly
+  vagrant
+  vagrant-manager
+  vanilla
   visual-studio-code
+  webtorrent
+  
+  homebrew/cask-fonts/font-fira-mono
+  homebrew/cask-fonts/font-roboto-mono
+  homebrew/cask-fonts/font-noto-mono
+  homebrew/cask-fonts/font-noto-sans
+  homebrew/cask-fonts/font-noto-serif
+  
+  homebrew/cask-drivers/yubico-yubikey-manager
+  homebrew/cask-drivers/yubico-yubikey-piv-manager
 )
 
 misc_installs=(
@@ -178,6 +193,7 @@ if is_macos; then
     libffi
     libyaml
     mas
+    opensc
     openssl
     readline
     terminal-notifier
