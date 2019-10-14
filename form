@@ -105,6 +105,7 @@ brew_formulae=(
   asciinema
   awscli
   bat
+  cfssl
   convox
   drakew/corgi/corgi
   fish
@@ -124,7 +125,6 @@ brew_formulae=(
   nodenv
   pastel
   peco
-  puma/puma/puma-dev
   pyenv
   rbenv
   ripgrep
@@ -152,6 +152,7 @@ brew_casks=(
   iterm2
   karabiner-elements
   plex-media-player
+  puma/puma/puma-dev
   stretchly
   visual-studio-code
 )
