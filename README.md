@@ -1,5 +1,7 @@
 # Nebula
 
+[Misc notes](./MISC.md)
+
 ## macOS Prerequisites
 
 ```shell

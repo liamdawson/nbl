@@ -113,18 +113,19 @@ brew_formulae=(
   gnupg
   go
   graphviz
+  helmfile
   httpie
   hub
   jq
   just
-  k3d # mark/sweep
   knqyf263/pet/pet
-  minikube
+  kubernetes-helm
   neofetch
   node-build
   nodenv
   pastel
   peco
+  puma/puma/puma-dev
   pyenv
   rbenv
   ripgrep
@@ -139,7 +140,6 @@ brew_formulae=(
 )
 
 brew_casks=(
-  1password
   1password-cli
   alfred
   aws-vault
@@ -152,9 +152,9 @@ brew_casks=(
   iterm2
   jetbrains-toolbox
   karabiner-elements
+  minikube
   muzzle
   plex-media-player
-  puma/puma/puma-dev
   stretchly
   vagrant
   vagrant-manager
@@ -167,6 +167,7 @@ brew_casks=(
   homebrew/cask-fonts/font-noto-mono
   homebrew/cask-fonts/font-noto-sans
   homebrew/cask-fonts/font-noto-serif
+  homebrew/cask-fonts/font-ubuntu
   
   homebrew/cask-drivers/yubico-yubikey-manager
   homebrew/cask-drivers/yubico-yubikey-piv-manager
