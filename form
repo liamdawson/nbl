@@ -107,6 +107,7 @@ brew_formulae=(
   bat
   cfssl
   convox
+  direnv
   drakew/corgi/corgi
   fish
   git
@@ -161,12 +162,19 @@ brew_casks=(
   vanilla
   visual-studio-code
   webtorrent
+
+  qlcolorcode
+  qlcommonmark
+  qlimagesize
+  qlprettypatch
+  qlstephen
+  quicklook-json
   
   homebrew/cask-fonts/font-fira-mono
-  homebrew/cask-fonts/font-roboto-mono
   homebrew/cask-fonts/font-noto-mono
   homebrew/cask-fonts/font-noto-sans
   homebrew/cask-fonts/font-noto-serif
+  homebrew/cask-fonts/font-roboto-mono
   homebrew/cask-fonts/font-ubuntu
   
   homebrew/cask-drivers/yubico-yubikey-manager
@@ -183,7 +191,7 @@ snap_packages=(
 
 cargo_packages=(
   cargo-update
-  fw
+  watchexec
 )
 
 if is_macos; then
