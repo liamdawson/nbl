@@ -19,9 +19,15 @@ restow() {
 
 # stow user binaries
 
-mkdir -p "${HOME}/.local/bin"
+non_linked_paths=(
+  "${HOME}/.local/bin"
+  "${HOME}/.config/fish/conf.d"
+  "${HOME}/.aws"
+)
+
+for path in "${non_linked_paths[@]}"; do
+  mkdir -p "$path"
+done
+
 restow -t "$HOME" binaries
-
-mkdir -p "${HOME}/.config/fish/conf.d"
 restow -t "${HOME}/.config/fish" fish
-
