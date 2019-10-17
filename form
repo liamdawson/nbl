@@ -109,6 +109,7 @@ brew_formulae=(
   convox
   direnv
   drakew/corgi/corgi
+  fd
   fish
   git
   gnupg
@@ -117,6 +118,7 @@ brew_formulae=(
   helmfile
   httpie
   hub
+  hyperfine
   jq
   just
   knqyf263/pet/pet
@@ -137,6 +139,7 @@ brew_formulae=(
   stow
   tree
   vim
+  watchexec
   xsv
   ykman
 )
@@ -194,7 +197,6 @@ snap_packages=(
 
 cargo_packages=(
   cargo-update
-  watchexec
 )
 
 if is_macos; then
