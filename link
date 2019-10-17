@@ -22,6 +22,7 @@ restow() {
 non_linked_paths=(
   "${HOME}/.local/bin"
   "${HOME}/.config/fish/conf.d"
+  "${HOME}/.config/fish/functions"
   "${HOME}/.aws"
 )
 
@@ -31,3 +32,4 @@ done
 
 restow -t "$HOME" binaries
 restow -t "${HOME}/.config/fish" fish
+restow -t "$(rbenv root)" rbenv

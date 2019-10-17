@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ls "${NBL_REPO_DIR}/plugins"

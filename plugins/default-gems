@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eu
+
+eval "$(rbenv init -)"
+
+default_gems="$(cat "$(rbenv root)/default-gems")"
+
+for version in $(rbenv versions --bare); do
+  rbenv shell "$version"
+
+  # shellcheck disable=SC2086
+  gem install -N $default_gems
+done

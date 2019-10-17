@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
-if ! [ -d ~/.nbl ]; then
-  echo "Where's ~/.nbl?"
+set -eu
+
+nbl_bin_path="$(python -c "import os; print(os.path.realpath('$0'))")"
+NBL_REPO_DIR="$(cd "$(dirname "$nbl_bin_path")/../../../.." >/dev/null && pwd)"
+export NBL_REPO_DIR
+cd "$NBL_REPO_DIR"
+
+if [[ $# -lt 1 ]]; then
+  echo "usage: $0 <plugin> [plugin arguments...]"
+  echo
+  echo "  e.g. $0 list-plugins"
   exit 1
 fi
 
-(
-  set -eu
+export NBL_PLUGIN="$1"
+nbl_plugin_bin="${NBL_REPO_DIR}/plugins/${1}"
 
-  cd ~/.nbl
-  bash form
-  bash link
-)
+shift
+
+$nbl_plugin_bin "$@"
