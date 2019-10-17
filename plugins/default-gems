@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -eu
-
 eval "$(rbenv init -)"
 
 default_gems="$(cat "$(rbenv root)/default-gems")"
