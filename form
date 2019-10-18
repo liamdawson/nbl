@@ -153,6 +153,7 @@ brew_casks=(
   ccmenu
   dash
   docker
+  dotnet-sdk
   firefox
   iterm2
   jetbrains-toolbox
@@ -160,6 +161,7 @@ brew_casks=(
   minikube
   muzzle
   plex-media-player
+  sonos
   stretchly
   vagrant
   vagrant-manager
