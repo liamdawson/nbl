@@ -5,6 +5,7 @@ set -eux
 main() {
   update_macos_settings
   download_themes
+  turn_off_gatekeeper
 }
 
 update_macos_settings() {
@@ -46,6 +47,12 @@ update_macos_settings() {
 
 download_themes() {
   test -d ~/w/upstream/dracula-iterm || git clone https://github.com/dracula/iterm.git ~/w/upstream/dracula-iterm
+}
+
+turn_off_gatekeeper() {
+  if ! [[ "$(spctl --status)" = 'assessments disabled' ]]; then
+    sudo spctl --master-disable
+  fi
 }
 
 main
