@@ -150,11 +150,13 @@ brew_casks=(
   aws-vault
   balenaetcher
   bdash
+  betterzip
   ccmenu
   dash
   docker
   dotnet-sdk
   firefox
+  fluid
   iterm2
   jetbrains-toolbox
   karabiner-elements
@@ -174,7 +176,6 @@ brew_casks=(
   qlimagesize
   qlprettypatch
   qlstephen
-  quicklook-json
   
   homebrew/cask-fonts/font-fira-mono
   homebrew/cask-fonts/font-noto-mono
