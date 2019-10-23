@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+launchctl stop com.openssh.ssh-agent && launchctl start com.openssh.ssh-agent && ssh-sc

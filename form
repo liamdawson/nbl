@@ -157,6 +157,7 @@ brew_casks=(
   dotnet-sdk
   firefox
   fluid
+  google-chrome
   iterm2
   jetbrains-toolbox
   karabiner-elements
@@ -164,6 +165,7 @@ brew_casks=(
   muzzle
   plex-media-player
   sonos
+  stoplight-studio
   stretchly
   vagrant
   vagrant-manager
@@ -186,6 +188,8 @@ brew_casks=(
   
   homebrew/cask-drivers/yubico-yubikey-manager
   homebrew/cask-drivers/yubico-yubikey-piv-manager
+
+  homebrew/cask-versions/firefox-developer-edition
 )
 
 # shellcheck disable=SC2016
