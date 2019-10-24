@@ -2,10 +2,13 @@
 
 set -eux
 
+cd "$( dirname "${BASH_SOURCE[0]}" )/.."
+
 main() {
   update_macos_settings
   download_themes
   turn_off_gatekeeper
+  sync_library
 }
 
 update_macos_settings() {
@@ -53,6 +56,10 @@ turn_off_gatekeeper() {
   if ! [[ "$(spctl --status)" = 'assessments disabled' ]]; then
     sudo spctl --master-disable
   fi
+}
+
+sync_library() {
+  stow --restow -d "./stowed" -t "${HOME}/Library" macos-user-library
 }
 
 main

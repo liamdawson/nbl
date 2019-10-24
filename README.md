@@ -15,6 +15,12 @@
 sudo apt install -y git curl
 ```
 
+## Shared manual setup
+
+```shell
+echo -e "[include]\n  path = .synced/.gitconfig" >> ~/.gitconfig
+```
+
 ## Installation
 
 ```shell

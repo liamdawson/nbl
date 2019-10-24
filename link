@@ -24,6 +24,7 @@ non_linked_paths=(
   "${HOME}/.config/fish/conf.d"
   "${HOME}/.config/fish/functions"
   "${HOME}/.aws"
+  "${HOME}/.synced"
 )
 
 for path in "${non_linked_paths[@]}"; do
@@ -33,3 +34,4 @@ done
 restow -t "$HOME" binaries
 restow -t "${HOME}/.config/fish" fish
 restow -t "$(rbenv root)" rbenv
+restow -t "$HOME" dotfiles
