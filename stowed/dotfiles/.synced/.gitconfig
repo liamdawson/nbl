@@ -5,4 +5,25 @@
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
-  required = true 
+  required = true
+
+[core]
+  pager = "less -FRX"
+  excludesfile = ~/.synced/.gitignore
+  editor = vim
+
+[color]
+  ui = auto
+
+[push]
+  default = current
+
+[commit]
+  verbose = true
+  cleanup = scissors
+
+[merge]
+  ff = only
+
+[pull]
+  ff = only
