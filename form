@@ -123,6 +123,7 @@ brew_formulae=(
   just
   knqyf263/pet/pet
   kubernetes-helm
+  minikube
   neofetch
   node-build
   nodenv
@@ -158,12 +159,13 @@ brew_casks=(
   firefox
   fluid
   google-chrome
+  insomnia
   iterm2
   jetbrains-toolbox
   karabiner-elements
-  minikube
-  muzzle
+  keybase
   plex-media-player
+  postbox # marked for delete
   sonos
   stoplight-studio
   stretchly

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+if [[ $# -ne 1 ]]; then
+  cd "${NBL_REPO_DIR}/uses"
+  find . -name '*.sh' | sed -Ee 's#\./(.*).sh#\1#'
+  exit 1
+fi
+
+"$NBL_REPO_DIR/uses/$1.sh"

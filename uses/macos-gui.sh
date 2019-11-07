@@ -9,6 +9,7 @@ main() {
   download_themes
   turn_off_gatekeeper
   sync_library
+  install_mas_apps
 }
 
 update_macos_settings() {
@@ -60,6 +61,10 @@ turn_off_gatekeeper() {
 
 sync_library() {
   stow --restow -d "./stowed" -t "${HOME}/Library" macos-user-library
+}
+
+install_mas_apps() {
+  brew bundle install --file="uses/mas/Brewfile"
 }
 
 main
