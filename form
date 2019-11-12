@@ -1,57 +1,10 @@
 #!/usr/bin/env bash
 
-set -eux
-sudo -v
+set -eu
 
-is_linux() {
-  test "$(uname)" = 'Linux'
-}
-
-is_macos() {
-  test "$(uname)" = 'Darwin'
-}
-
-command_exists() {
-  test -x "$(command -v "$1")"
-}
-
-cargo_install() {
-  target_pkg="$1"
-
-  if ! command_exists cargo; then
-    return 0
-  fi
-
-  if ! command_exists cargo-install-update; then
-    cargo install cargo-update
-  fi
-
-  if cargo install --list | grep -q "^$target_pkg"; then
-    cargo install-update "$target_pkg"
-  else
-    cargo install "$target_pkg"
-  fi
-}
-
-# ensure assumption: .local/bin on path
-export PATH="$PATH:~/.local/bin"
-
-# ensure assumption: homebrew installed
-if is_linux; then
-  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-  command_exists curl || sudo apt-get install -y curl
-  command_exists brew || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-elif is_macos; then
-  command_exists brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-# ensure assumption: packages up to date
-
-! command_exists apt-get || sudo bash -c 'apt-get update && apt-get upgrade -y'
-! command_exists brew || bash -c 'brew update && brew upgrade'
-! is_macos || brew cask upgrade
-
-# all the packages
+###
+### PACKAGES
+###
 
 apt_packages=(
   arc-theme
@@ -145,6 +98,22 @@ brew_formulae=(
   ykman
 )
 
+# some formulae only work, or are only necessary, on a macos install
+macos_brew_formulae=("${brew_formulae[@]}")
+macos_brew_formulae+=(
+  heroku/brew/heroku
+  kubernetes-cli
+  libffi
+  libyaml
+  mas
+  opensc
+  openssl
+  readline
+  terminal-notifier
+  xz
+  yubico-piv-tool
+)
+
 brew_casks=(
   1password-cli
   alfred
@@ -205,49 +174,94 @@ snap_packages=(
 )
 
 cargo_packages=(
+  cargo-edit
   cargo-update
 )
 
-if is_macos; then
-  # some are for rbenv/pyenv etc., some only install on macOS
-  brew_formulae+=(
-    heroku/brew/heroku
-    kubernetes-cli
-    libffi
-    libyaml
-    mas
-    opensc
-    openssl
-    readline
-    terminal-notifier
-    xz
-    yubico-piv-tool
-  )
-fi
+###
+### END PACKAGES
+###
 
-! is_linux || sudo apt-get install -y "${apt_packages[@]}"
-brew install "${brew_formulae[@]}"
-! is_macos || brew cask install "${brew_casks[@]}"
+main() {
+  sudo -v
+  
+  # ensure assumption: .local/bin on path
+  export PATH="$PATH:~/.local/bin"
+  
+  # ensure assumption: homebrew installed
+  if is_linux; then
+    export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+    command_exists curl || sudo apt-get install -y curl
+    command_exists brew || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  elif is_macos; then
+    command_exists brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+  
+  # ensure assumption: packages up to date
+  
+  ! command_exists apt-get || sudo bash -c 'apt-get update && apt-get upgrade -y'
+  ! command_exists brew || bash -c 'brew update && brew upgrade'
+  ! is_macos || brew cask upgrade
 
-if command -v snap >/dev/null; then
-  for pkg in "${snap_packages[@]}"; do
-    sudo snap install $pkg
+  ! is_linux || sudo apt-get install -y "${apt_packages[@]}"
+  ! is_linux || brew install "${brew_formulae[@]}"
+  ! is_macos || brew install "${macos_brew_formulae[@]}"
+  ! is_macos || brew cask install "${brew_casks[@]}"
+  
+  if command -v snap >/dev/null; then
+    for pkg in "${snap_packages[@]}"; do
+      # shellcheck disable=SC2086
+      sudo snap install $pkg
+    done
+  fi
+  
+  # manual installation where casks etc. weren't available
+  
+  if is_linux && ! command_exists code; then
+    curl -fsSLo /tmp/code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+  
+    sudo dpkg -i /tmp/code.deb
+    rm /tmp/code.deb
+  fi
+  
+  for cmd in "${misc_installs[@]}"; do
+    bash -c "$cmd"
   done
-fi
+  
+  for pkg in "${cargo_packages[@]}"; do
+    cargo_install "$pkg"
+  done
+}
 
-# manual installation where casks etc. weren't available
+is_linux() {
+  test "$(uname)" = 'Linux'
+}
 
-if is_linux && ! command_exists code; then
-  curl -fsSLo /tmp/code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+is_macos() {
+  test "$(uname)" = 'Darwin'
+}
 
-  sudo dpkg -i /tmp/code.deb
-  rm /tmp/code.deb
-fi
+command_exists() {
+  test -x "$(command -v "$1")"
+}
 
-for cmd in "${misc_installs[@]}"; do
-  bash -c "$cmd"
-done
+cargo_install() {
+  target_pkg="$1"
 
-for pkg in "${cargo_packages[@]}"; do
-  cargo_install "$pkg"
-done
+  if ! command_exists cargo; then
+    return 0
+  fi
+
+  if ! command_exists cargo-install-update; then
+    cargo install cargo-update
+  fi
+
+  if cargo install --list | grep -q "^$target_pkg"; then
+    cargo install-update "$target_pkg"
+  else
+    cargo install "$target_pkg"
+  fi
+}
+
+set -x
+main
