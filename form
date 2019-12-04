@@ -54,33 +54,34 @@ apt_packages=(
 )
 
 brew_formulae=(
-  adr-tools
-  asciinema
-  awscli
-  bat
-  cfssl
-  convox
-  direnv
-  drakew/corgi/corgi
-  fd
-  fish
+  adr-tools # ADR manipulation
+  asciinema # Record shell sessions
+  awscli    # Work with AWS
+  bat       # "Better cat"
+  cfssl     # TLS certificate helper
+  convox    # Use Convox for some work projects
+  direnv    # Used for `.env` usage where apps won't load it themselves
+  drakew/corgi/corgi # Run script chains
+  fd        # A friendlier `find`
+  fish      # My preferred shell
   git
   gnupg
   go
   graphviz
   helmfile
   httpie
-  hub
-  hyperfine
+  hub       # GitHub `git` overlay
+  hyperfine # Benchmarking tool
   jq
-  just
-  knqyf263/pet/pet
+  just      # Make alternative for scripts
+  knqyf263/pet/pet # Use code/shell snippets
   kubernetes-helm
   minikube
   neofetch
   node-build
   nodenv
-  pastel
+  nodenv/nodenv/nodenv-default-packages
+  pastel    # Work with colours
   peco
   puma/puma/puma-dev
   pyenv
@@ -91,9 +92,10 @@ brew_formulae=(
   shellcheck
   shfmt
   stow
+  topgrade  # Update all of the packages everywhere
   tree
   vim
-  watchexec
+  watchexec # nodemon alternative
   xsv
   ykman
 )
@@ -134,7 +136,7 @@ brew_casks=(
   karabiner-elements
   keybase
   plex-media-player
-  postbox # marked for delete
+  postbox
   sonos
   stoplight-studio
   stretchly
@@ -149,6 +151,8 @@ brew_casks=(
   qlimagesize
   qlprettypatch
   qlstephen
+
+  devhubapp/devhub/devhub
   
   homebrew/cask-fonts/font-fira-mono
   homebrew/cask-fonts/font-noto-mono
@@ -231,6 +235,9 @@ main() {
   for pkg in "${cargo_packages[@]}"; do
     cargo_install "$pkg"
   done
+
+  nodenv default-packages install --all
+  rbenv_default_gems
 }
 
 is_linux() {
@@ -261,6 +268,22 @@ cargo_install() {
   else
     cargo install "$target_pkg"
   fi
+}
+
+rbenv_default_gems() {
+  (
+    set +eux
+    eval "$(rbenv init -)"
+
+    default_gems="$(cat "$(rbenv root)/default-gems")"
+
+    for version in $(rbenv versions --bare); do
+      rbenv shell "$version"
+
+      # shellcheck disable=SC2086
+      gem install -N $default_gems
+    done
+  )
 }
 
 set -x

@@ -34,4 +34,5 @@ done
 restow -t "$HOME" binaries
 restow -t "${HOME}/.config/fish" fish
 restow -t "$(rbenv root)" rbenv
+restow -t "$(nodenv root)" nodenv
 restow -t "$HOME" dotfiles
