@@ -2,11 +2,7 @@ oh-my-fish/plugin-nodenv
 oh-my-fish/plugin-rbenv
 oh-my-fish/plugin-rustup
 oh-my-fish/plugin-bang-bang
-oh-my-fish/plugin-gi
-oh-my-fish/plugin-license
-oh-my-fish/plugin-pbcopy
 oh-my-fish/plugin-aws
-oh-my-fish/plugin-thefuck
 liamdawson/fish-plugin-gobin
 liamdawson/fish-plugin-sbin
 liamdawson/fish-plugin-snap

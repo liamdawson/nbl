@@ -17,12 +17,12 @@ restow() {
   "$STOW_PATH" --restow -d "${DIR}/stowed" "$@" 
 }
 
-# stow user binaries
+# stow user binaries and configuration
 
 non_linked_paths=(
   "${HOME}/.local/bin"
-  "${HOME}/.config/fish/conf.d"
-  "${HOME}/.config/fish/functions"
+  "${HOME}/.config/"{fish,tilix}
+  "${HOME}/.config/fish/"{conf.d,functions}
   "${HOME}/.aws"
   "${HOME}/.synced"
 )
@@ -36,3 +36,4 @@ restow -t "${HOME}/.config/fish" fish
 restow -t "$(rbenv root)" rbenv
 restow -t "$(nodenv root)" nodenv
 restow -t "$HOME" dotfiles
+restow -t "$HOME" ubuntu-config
