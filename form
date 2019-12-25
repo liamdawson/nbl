@@ -92,6 +92,7 @@ brew_formulae=(
   ruby-build
   shellcheck
   shfmt
+  starship # cross-shell prompt
   stow
   topgrade  # Update all of the packages everywhere
   tree
