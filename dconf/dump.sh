@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+cd "$( dirname "${BASH_SOURCE[0]}" )"
+
+dconf dump /com/gexperts/Tilix/ > tilix.dconf
