@@ -58,10 +58,12 @@ brew_formulae=(
   adr-tools # ADR manipulation
   asciinema # Record shell sessions
   awscli    # Work with AWS
-  bat       # "Better cat"
+  bat       # Better cat
   cfssl     # TLS certificate helper
   convox    # Use Convox for some work projects
   direnv    # Used for `.env` usage where apps won't load it themselves
+  docker-machine
+  docker-machine-driver-vmware
   drakew/corgi/corgi # Run script chains
   fd        # A friendlier `find`
   fish      # My preferred shell
@@ -124,7 +126,6 @@ brew_casks=(
   aws-vault
   balenaetcher
   bdash
-  betterzip
   ccmenu
   dash
   docker
@@ -139,6 +140,7 @@ brew_casks=(
   keybase
   plex-media-player
   postbox
+  setapp
   sonos
   stoplight-studio
   stretchly
