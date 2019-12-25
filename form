@@ -18,6 +18,7 @@ apt_packages=(
   firefox
   fish
   fonts-noto-color-emoji
+  fonts-powerline
   git
   gnome-disk-utility
   gnome-tweaks
