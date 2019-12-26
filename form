@@ -136,7 +136,6 @@ brew_casks=(
   insomnia
   iterm2
   jetbrains-toolbox
-  karabiner-elements
   keybase
   plex-media-player
   postbox
