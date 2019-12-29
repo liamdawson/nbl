@@ -157,12 +157,14 @@ brew_casks=(
 
   devhubapp/devhub/devhub
   
+  homebrew/cask-fonts/font-cascadia-mono-pl
   homebrew/cask-fonts/font-fira-mono
   homebrew/cask-fonts/font-noto-mono
   homebrew/cask-fonts/font-noto-sans
   homebrew/cask-fonts/font-noto-serif
   homebrew/cask-fonts/font-roboto-mono
   homebrew/cask-fonts/font-ubuntu
+  homebrew/cask-fonts/font-ubuntumono-nerd-font
   
   homebrew/cask-drivers/yubico-yubikey-manager
   homebrew/cask-drivers/yubico-yubikey-piv-manager
