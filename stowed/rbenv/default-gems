@@ -4,3 +4,6 @@ bundler:~>2
 overcommit
 solargraph
 rubocop
+pry
+pry-rescue
+pry-stack_explorer
