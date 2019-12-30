@@ -1,0 +1,22 @@
+[character]
+symbol = ">>"
+error_symbol = "!>"
+use_symbol_for_status = true
+
+[duration]
+min_time = 10000
+
+[battery]
+disabled = true
+
+[directory]
+fish_style_pwd_dir_length = 1
+
+[hg_branch]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[terraform]
+disabled = true
