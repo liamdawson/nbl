@@ -3,3 +3,4 @@ bundler:~>1
 bundler:~>2
 overcommit
 solargraph
+rubocop
