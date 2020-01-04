@@ -139,6 +139,7 @@ brew_casks=(
   keybase
   plex-media-player
   postbox
+  powershell
   setapp
   sonos
   stoplight-studio
@@ -180,6 +181,7 @@ misc_installs=(
 
 snap_packages=(
   '--classic kubectl'
+  '--classic powershell'
 )
 
 cargo_packages=(
