@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 POSSIBLE_PATHS=(
+  /usr/lib/ssh-keychain.dylib
   /usr/local/lib/opensc-pkcs11.so
   /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
 )
