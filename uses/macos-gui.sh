@@ -6,6 +6,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
 main() {
   update_macos_settings
+  configure_defaults_via_profile
   download_themes
   turn_off_gatekeeper
   sync_library
@@ -72,7 +73,11 @@ sync_library() {
 }
 
 install_mas_apps() {
-  brew bundle install --file="uses/mas/Brewfile"
+  brew bundle install --file="uses/macos/Brewfile"
+}
+
+configure_defaults_via_profile() {
+  /usr/bin/profiles -I -F uses/macos/askforpassworddelay.mobileconfig
 }
 
 main
