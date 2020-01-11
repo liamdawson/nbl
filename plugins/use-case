@@ -2,10 +2,12 @@
 
 set -eu
 
-if [[ $# -ne 1 ]]; then
-  cd "${NBL_REPO_DIR}/uses"
-  find . -name '*.sh' | sed -Ee 's#\./(.*).sh#\1#'
+if [[ $# -lt 1 ]]; then
+  find uses/ -name '*.sh' -executable -type f | sed -Ee 's,uses/(.*)\.sh,\1,'
   exit 1
 fi
 
-"$NBL_REPO_DIR/uses/$1.sh"
+usecase="$1"
+shift
+
+"./uses/${usecase}.sh" "$@"
