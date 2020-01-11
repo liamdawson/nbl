@@ -67,6 +67,7 @@ brew_formulae=(
   drakew/corgi/corgi # Run script chains
   fd        # A friendlier `find`
   fish      # My preferred shell
+  fork-cleaner
   git
   gnupg
   go
