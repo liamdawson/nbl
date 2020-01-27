@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Windows Store App Links</title>
+  <style>
+    div#appLinks {
+      max-width: 60rem;
+      margin: 0 auto;
+    }
+    
+    div#appLinks a {
+      display: block;
+      font-size: 1.5rem;
+      padding: 1rem 1rem;
+      margin: 0.5rem 0;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div id="appLinks"></div>
+  
+  <script>
+    let container = document.getElementById("appLinks");
+    
+    let apps = {
+      "9mspc6mp8fm4": "Microsoft Whiteboard",
+      "9NBLGGH35LXN": "Affinity Photo",
+      "9N0DX20HK701": "Windows Terminal (Preview)",
+      "9NBLGGH35LRM": "Affinity Designer",
+      "9NBLGGH5R558": "Microsoft To-Do",
+      "9WZDNCRFHWQT": "Drawboard PDF",
+      "CFQ7TTC0K5DM": "Office 365 Home",
+    };
+    
+    for(let appId of Object.keys(apps)) {
+      let el = document.createElement("a");
+      el.href = `ms-windows-store://pdp/?ProductId=${appId}`;
+      el.text = apps[appId];
+      
+      container.appendChild(el);
+    }
+  </script>
+</body>
+</html>

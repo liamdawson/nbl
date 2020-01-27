@@ -2,6 +2,10 @@
 
 [Misc notes](./MISC.md)
 
+## Windows Prerequisites
+
+* [Boxstarter](https://boxstarter.org/)
+
 ## macOS Prerequisites
 
 ```shell

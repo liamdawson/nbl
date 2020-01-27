@@ -56,6 +56,9 @@ update_macos_settings() {
   defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
   defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
   defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+  
+  # textedit plain text
+  defaults write com.apple.TextEdit RichText -int 0
 }
 
 download_themes() {
