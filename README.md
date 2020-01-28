@@ -6,6 +6,8 @@
 
 * [Boxstarter](https://boxstarter.org/)
 
+`Install-BoxstarterPackage -PackageName https://raw.githubusercontent.com/liamdawson/nbl/master/win/boxstarter.ps1 -DisableReboots`
+
 ## macOS Prerequisites
 
 ```shell
