@@ -87,10 +87,12 @@ brew_formulae=(
   nodenv/nodenv/nodenv-default-packages
   pastel    # Work with colours
   peco
+  pipx
   puma/puma/puma-dev
   pyenv
   rbenv
   ripgrep
+  rs/tap/dnstrace
   rsync
   ruby-build
   shellcheck
