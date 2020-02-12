@@ -140,6 +140,7 @@ brew_casks=(
   iterm2
   jetbrains-toolbox
   keybase
+  microsoft-edge
   plex-media-player
   postbox
   powershell
