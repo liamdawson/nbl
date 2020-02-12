@@ -33,16 +33,19 @@ update_macos_settings() {
   # and bye long delay to repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-  # screensaver security
-  defaults write com.apple.screensaver askForPassword -int 1
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
-
   # show hidden files
   defaults write com.apple.Finder AppleShowAllFiles -bool true
   # filename extensions
   defaults write NSGlobalDomain AppleShowAllExtensions -bool true
   # don't warn when changing filename extensions
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+  # show Finder path bar
+  defaults write com.apple.finder ShowPathbar -bool true
+  # keep folders on top when sorting by file name
+  defaults write com.apple.finder _FXSortFoldersFirst -bool true
+  # don't .DS_Store on removable/network locations
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
   # dock settings
   defaults write com.apple.dock show-recents -bool false
@@ -59,6 +62,25 @@ update_macos_settings() {
   
   # textedit plain text
   defaults write com.apple.TextEdit RichText -int 0
+
+  # always use expanded file dialogs
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+  # disable resume windows system-wide
+  defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+  # don't terminate inactive apps
+  defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+  # considering my system wants to report an error on every startup...
+  defaults write com.apple.CrashReporter DialogType -string "none"
+
+  # TODO: keep?
+  # Increase sound quality for Bluetooth
+  defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+  defaults write com.apple.screencapture type -string "png"
 }
 
 download_themes() {
