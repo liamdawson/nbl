@@ -110,6 +110,17 @@ brew_formulae=(
   ykman
 )
 
+linux_brew_fonts=(
+  linuxbrew/fonts/font-cascadia-mono-pl
+  linuxbrew/fonts/font-fira-mono
+  linuxbrew/fonts/font-noto-mono
+  linuxbrew/fonts/font-noto-sans
+  linuxbrew/fonts/font-noto-serif
+  linuxbrew/fonts/font-roboto-mono
+  linuxbrew/fonts/font-ubuntu
+  linuxbrew/fonts/font-ubuntumono-nerd-font
+)
+
 # some formulae only work, or are only necessary, on a macos install
 macos_brew_formulae=("${brew_formulae[@]}")
 macos_brew_formulae+=(
@@ -217,6 +228,7 @@ main() {
 
   ! is_linux || sudo apt-get install -y "${apt_packages[@]}"
   ! is_linux || brew install "${brew_formulae[@]}"
+  ! is_linux || brew install --HEAD "${linux_brew_fonts[@]}"
   ! is_macos || brew install "${macos_brew_formulae[@]}"
   ! is_macos || brew cask install "${brew_casks[@]}"
   
