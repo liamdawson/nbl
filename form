@@ -60,6 +60,7 @@ brew_formulae=(
   awscli    # Work with AWS
   bat       # Better cat
   cfssl     # TLS certificate helper
+  cloudflare/cloudflare/cloudflared
   convox    # Use Convox for some work projects
   direnv    # Used for `.env` usage where apps won't load it themselves
   docker-machine
@@ -68,6 +69,7 @@ brew_formulae=(
   fd        # A friendlier `find`
   fish      # My preferred shell
   fork-cleaner
+  github/gh/gh
   git
   gnupg
   go
@@ -141,7 +143,7 @@ brew_casks=(
   jetbrains-toolbox
   keybase
   microsoft-edge
-  plex-media-player
+  plex
   postbox
   powershell
   setapp
