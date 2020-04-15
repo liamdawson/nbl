@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -eu
+
+cd "$NBL_REPO_DIR"
+
+if ! git pull; then
+  echo "Dropping into a shell, will try to pull again upon exit."
+  "$SHELL"
+fi
