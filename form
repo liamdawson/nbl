@@ -87,6 +87,7 @@ brew_formulae=(
   node-build
   nodenv
   nodenv/nodenv/nodenv-default-packages
+  pandoc    # mermaid tooling
   pastel    # Work with colours
   peco
   pipx
@@ -155,12 +156,6 @@ brew_casks=(
   vanilla
   visual-studio-code
   webtorrent
-
-  qlcolorcode
-  qlcommonmark
-  qlimagesize
-  qlprettypatch
-  qlstephen
 
   devhubapp/devhub/devhub
   
