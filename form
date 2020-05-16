@@ -54,20 +54,20 @@ apt_packages=(
   zlib1g-dev
 )
 
-brew_formulae=(
+common_brew_formulae=(
   adr-tools # ADR manipulation
   asciinema # Record shell sessions
   awscli    # Work with AWS
   bat       # Better cat
   cfssl     # TLS certificate helper
   cloudflare/cloudflare/cloudflared
-  convox    # Use Convox for some work projects
-  direnv    # Used for `.env` usage where apps won't load it themselves
+  convox # Use Convox for some work projects
+  direnv # Used for `.env` usage where apps won't load it themselves
   docker-machine
   docker-machine-driver-vmware
   drakew/corgi/corgi # Run script chains
-  fd        # A friendlier `find`
-  fish      # My preferred shell
+  fd                 # A friendlier `find`
+  fish               # My preferred shell
   fork-cleaner
   github/gh/gh
   git
@@ -79,7 +79,7 @@ brew_formulae=(
   hub       # GitHub `git` overlay
   hyperfine # Benchmarking tool
   jq
-  just      # Make alternative for scripts
+  just             # Make alternative for scripts
   knqyf263/pet/pet # Use code/shell snippets
   kubernetes-helm
   minikube
@@ -87,8 +87,8 @@ brew_formulae=(
   node-build
   nodenv
   nodenv/nodenv/nodenv-default-packages
-  pandoc    # mermaid tooling
-  pastel    # Work with colours
+  pandoc # mermaid tooling
+  pastel # Work with colours
   peco
   pipx
   puma/puma/puma-dev
@@ -102,7 +102,7 @@ brew_formulae=(
   shfmt
   starship # cross-shell prompt
   stow
-  topgrade  # Update all of the packages everywhere
+  topgrade # Update all of the packages everywhere
   tree
   vim
   watchexec # nodemon alternative
@@ -110,20 +110,22 @@ brew_formulae=(
   ykman
 )
 
-linux_brew_fonts=(
-  linuxbrew/fonts/font-cascadia-mono-pl
-  linuxbrew/fonts/font-fira-mono
+linux_brew_head_fonts=(
   linuxbrew/fonts/font-noto-mono
   linuxbrew/fonts/font-noto-sans
   linuxbrew/fonts/font-noto-serif
   linuxbrew/fonts/font-roboto-mono
+)
+
+linux_brew_formulae=(
+  linuxbrew/fonts/font-cascadia-mono-pl
+  linuxbrew/fonts/font-fira-mono
   linuxbrew/fonts/font-ubuntu
   linuxbrew/fonts/font-ubuntumono-nerd-font
 )
 
 # some formulae only work, or are only necessary, on a macos install
-macos_brew_formulae=("${brew_formulae[@]}")
-macos_brew_formulae+=(
+macos_brew_formulae=(
   heroku/brew/heroku
   kubernetes-cli
   libffi
@@ -167,9 +169,9 @@ brew_casks=(
   vanilla
   visual-studio-code
   webtorrent
-
+  \
   devhubapp/devhub/devhub
-  
+  \
   homebrew/cask-fonts/font-cascadia-mono-pl
   homebrew/cask-fonts/font-fira-mono
   homebrew/cask-fonts/font-noto-mono
@@ -178,10 +180,10 @@ brew_casks=(
   homebrew/cask-fonts/font-roboto-mono
   homebrew/cask-fonts/font-ubuntu
   homebrew/cask-fonts/font-ubuntumono-nerd-font
-  
+  \
   homebrew/cask-drivers/yubico-yubikey-manager
   homebrew/cask-drivers/yubico-yubikey-piv-manager
-
+  \
   homebrew/cask-versions/firefox-developer-edition
 )
 
@@ -206,58 +208,64 @@ cargo_packages=(
 ###
 
 main() {
+  local brew_formulae
+  local head_brew_formulae
+  local brew_casks
+
+  extract_formulae brew_formulae head_brew_formulae brew_casks
+
   sudo -v
-  
+
   # ensure assumption: .local/bin on path
   export PATH="$PATH:~/.local/bin"
-  
+
   # ensure assumption: homebrew installed
   if is_linux; then
     export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-    command_exists curl || sudo apt-get install -y curl
-    command_exists brew || sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    command_exists curl || run sudo apt-get install -y curl
+    command_exists brew || run sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   elif is_macos; then
-    command_exists brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    command_exists brew || run /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-  
-  # ensure assumption: packages up to date
-  
-  ! command_exists apt-get || sudo bash -c 'apt-get update && apt-get upgrade -y'
-  ! command_exists brew || bash -c 'brew update && brew upgrade'
-  ! is_macos || brew cask upgrade
 
-  ! is_linux || sudo apt-get install -y "${apt_packages[@]}"
-  ! is_linux || brew install "${brew_formulae[@]}"
-  ! is_linux || brew install --HEAD "${linux_brew_fonts[@]}"
-  ! is_macos || brew install "${macos_brew_formulae[@]}"
-  ! is_macos || brew cask install "${brew_casks[@]}"
-  
+  # ensure assumption: packages up to date/available
+  if is_linux && command_exists apt-get; then
+    run sudo bash -c 'apt-get update && apt-get upgrade -y'
+    run sudo apt-get install -y "${apt_packages[@]}"
+  fi
+
+  [ ${#brew_formulae[@]} -eq 0 ] || run brew install "${brew_formulae[@]}"
+  [ ${#head_brew_formulae[@]} -eq 0 ] || run brew install --HEAD "${head_brew_formulae[@]}"
+  [ ${#brew_casks[@]} -eq 0 ] || run brew cask install "${brew_casks[@]}"
+
   if command -v snap >/dev/null; then
     for pkg in "${snap_packages[@]}"; do
       # shellcheck disable=SC2086
-      sudo snap install $pkg
+      run sudo snap install $pkg
     done
   fi
-  
+
   # manual installation where casks etc. weren't available
-  
+
   if is_linux && ! command_exists code; then
-    curl -fsSLo /tmp/code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
-  
-    sudo dpkg -i /tmp/code.deb
-    rm /tmp/code.deb
+    run curl -fsSLo /tmp/code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+
+    run sudo dpkg -i /tmp/code.deb
+    run rm /tmp/code.deb
   fi
-  
+
   for cmd in "${misc_installs[@]}"; do
-    bash -c "$cmd"
-  done
-  
-  for pkg in "${cargo_packages[@]}"; do
-    cargo_install "$pkg"
+    run bash -c "$cmd"
   done
 
-  nodenv default-packages install --all
-  rbenv_default_gems
+  for pkg in "${cargo_packages[@]}"; do
+    run cargo_install "$pkg"
+  done
+
+  run nodenv default-packages install --all
+  run rbenv_default_gems
+
+  run topgrade
 }
 
 is_linux() {
@@ -270,6 +278,25 @@ is_macos() {
 
 command_exists() {
   test -x "$(command -v "$1")"
+}
+
+extract_formulae() {
+  # name references, meaning this function fills the provided arrays
+  local -n formulae=$1
+  local -n head_only=$2
+  local -n casks=$3
+
+  formulae=("${common_brew_formulae[@]}")
+  head_only=()
+  casks=()
+
+  if is_linux; then
+    formulae+=("${linux_brew_formulae[@]}")
+    head_only+=("${linux_brew_head_fonts[@]}")
+  elif is_macos; then
+    formulae+=("${macos_brew_formulae[@]}")
+    casks+=("${brew_casks[@]}")
+  fi
 }
 
 cargo_install() {
@@ -304,6 +331,11 @@ rbenv_default_gems() {
       gem install -N $default_gems
     done
   )
+}
+
+# to handle dry-run usage
+run() {
+  [ -n "${DRY_RUN:-}" ] || "$@"
 }
 
 set -x
