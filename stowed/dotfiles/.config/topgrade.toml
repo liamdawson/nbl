@@ -7,8 +7,11 @@ disable = ["rustup", "gem"]
 # Custom commands
 [commands]
 "Stable Rust" = "rustup update stable"
+"gi() completions" = "fish -c 'gi update-completions'"
 
-# https://raw.githubusercontent.com/r-darwish/topgrade/v3.9.0/config.example.toml
+# ==============================================================================
+
+# https://raw.githubusercontent.com/r-darwish/topgrade/v4.5.0/config.example.toml
 # Additional git repositories to pull
 #git_repos = [
 #    "~/src/*/",
@@ -42,18 +45,30 @@ disable = ["rustup", "gem"]
 # Arguments to pass tmux when pulling Repositories
 #tmux_arguments = "-S /var/tmux.sock"
 
-# Arguments to pass yay when updating packages
-#yay_arguments = "--nodevel"
-
 # Manually select Windows updates
 # accept_all_windows_updates = false
 
 # Do not set the terminal title
 #set_title = false
+
+# Cleanup temporary or old files
+#cleanup = true
+
+#[composer]
+#self_update = true
+
 # Commands to run before anything
 #[pre_commands]
 #"Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
 
+# Custom commands
+#[commands]
+#"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 
-# Cleanup temporary or old files
-#cleanup = true
+#[brew]
+#greedy_cask = true
+
+#[linux]
+# Arguments to pass yay when updating packages
+#yay_arguments = "--nodevel"
+
