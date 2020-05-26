@@ -145,6 +145,7 @@ brew_casks=(
   aws-vault
   balenaetcher
   bdash
+  beekeeper
   ccmenu
   dash
   docker
@@ -168,6 +169,7 @@ brew_casks=(
   vagrant-manager
   vanilla
   visual-studio-code
+  vmware-fusion
   webtorrent
   \
   devhubapp/devhub/devhub
