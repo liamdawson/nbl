@@ -133,6 +133,7 @@ macos_brew_formulae=(
   mas
   opensc
   openssl
+  pinentry-mac
   readline
   terminal-notifier
   xz
