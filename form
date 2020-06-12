@@ -193,7 +193,6 @@ brew_casks=(
 # shellcheck disable=SC2016
 misc_installs=(
   'command -v rustup >/dev/null || curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path'
-  'test -d "$(rbenv root)/plugins/rbenv-default-gems" || git clone https://github.com/rbenv/rbenv-default-gems.git "$(rbenv root)/plugins/rbenv-default-gems"'
 )
 
 snap_packages=(
