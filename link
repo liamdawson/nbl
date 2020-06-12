@@ -21,8 +21,7 @@ restow() {
 
 non_linked_paths=(
   "${HOME}/.local/bin"
-  "${HOME}/.config/"{fish,tilix}
-  "${HOME}/.config/fish/"{conf.d,functions}
+  "${HOME}/.config/tilix"
   "${HOME}/.aws"
   "${HOME}/.synced"
 )
@@ -32,7 +31,6 @@ for path in "${non_linked_paths[@]}"; do
 done
 
 restow -t "$HOME" binaries
-restow -t "${HOME}/.config/fish" fish
 restow -t "$(rbenv root)" rbenv
 restow -t "$(nodenv root)" nodenv
 restow -t "$HOME" dotfiles
